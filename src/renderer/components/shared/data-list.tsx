@@ -88,7 +88,7 @@ export class DataList extends React.Component<IDataListProps, IDataListState> {
     const { items } = this.state;
 
     return (
-      <div style={{ flexGrow: 1, width: '30%', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flexGrow: 1, width: '30%', height: '95vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
         {/* <TextField className={exampleChildClass} label="Filter by name:" onChange={this.onFilter} styles={textFieldStyles} /> */}
         <DetailsList
           styles={gridStyles}

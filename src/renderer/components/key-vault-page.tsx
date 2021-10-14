@@ -33,7 +33,7 @@ export default function KeyVaultPage() {
 
   return (
     <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly', height: '5vh' }}>
         <TextField
           value={subScribtionSearchTerm}
           onChange={(_, value) => {
@@ -59,7 +59,7 @@ export default function KeyVaultPage() {
           styles={{ root: { flexGrow: 1 } }}
         />
       </div>
-      <div style={{ width: '100vw', display: 'flex', justifyContent: 'center', flexGrow: 1, overflow: 'auto' }}>
+      <div style={{ width: '100vw', height: '95vh', display: 'flex', justifyContent: 'center', flexGrow: 1, overflow: 'auto' }}>
         <DataList
           columnName="Subscribtion"
           data={getSubscribtions().map((subscribtion) => ({ key: subscribtion.id, name: subscribtion.name }))}
