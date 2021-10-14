@@ -3,6 +3,13 @@ module.exports = {
   rules: {
     // A temporary hack related to IDE not resolving correct package.json
     'import/no-extraneous-dependencies': 'off',
+    'lines-between-class-members': 'off',
+    '@typescript-eslint/lines-between-class-members': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/ban-types': 'off',
+    'no-plusplus': 'off',
+    'prefer-template': 'off',
+    'endOfLine': 'auto',
   },
   parserOptions: {
     ecmaVersion: 2020,
