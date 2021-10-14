@@ -85,7 +85,6 @@ export class DataList extends React.Component<IDataListProps, IDataListState> {
     alert(`Item invoked: ${item.name}`);
   };
 
-
   public render(): JSX.Element {
     const { items } = this.state;
 
