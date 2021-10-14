@@ -7,6 +7,7 @@ export interface ISubscribtion {
 export interface IKeyVoult {
   id: string;
   name: string;
+  subscribtion: ISubscribtion;
   secrets: ISecret[];
 }
 
@@ -14,41 +15,44 @@ export interface ISecret {
   id: string;
   name: string;
   url: string;
+  keyVault: IKeyVoult;
 }
 
 const generateSubscribtions = (howMany: number): ISubscribtion[] => {
   const subscribtions: ISubscribtion[] = [];
   for (let i = 0; i < howMany; i++) {
-    const id = `subid-${i}`;
-    subscribtions.push({
-      id: id,
+    const subscribtion = {
+      id: `subid-${i}`,
       name: 'subscribtion-' + i,
-      keyVaults: generateKeyVaults(20, id),
-    });
+    } as ISubscribtion;
+    subscribtion.keyVaults = generateKeyVaults(20, subscribtion);
+    subscribtions.push(subscribtion);
   }
   return subscribtions;
 };
 
-const generateKeyVaults = (howMany: number, subscribtionId: string): IKeyVoult[] => {
+const generateKeyVaults = (howMany: number, subscribtion: ISubscribtion): IKeyVoult[] => {
   const keyVaults: IKeyVoult[] = [];
   for (let i = 0; i < howMany; i++) {
-    const id = `${subscribtionId}-vaultid${i}`;
-    keyVaults.push({
-      id: id,
-      name: subscribtionId + 'KeyVault-' + i,
-      secrets: generateSecrets(100, id),
-    });
+    const keyVault = {
+      id: `${subscribtion.id}-vaultid${i}`,
+      name: subscribtion.name + 'KeyVault-' + i,
+      subscribtion: subscribtion,
+    } as IKeyVoult;
+    keyVault.secrets = generateSecrets(100, keyVault);
+    keyVaults.push(keyVault);
   }
   return keyVaults;
 };
 
-const generateSecrets = (howMany: number, keyVaultId: string): ISecret[] => {
+const generateSecrets = (howMany: number, keyVault: IKeyVoult): ISecret[] => {
   const secrets: ISecret[] = [];
   for (let i = 0; i < howMany; i++) {
     secrets.push({
-      id: `${keyVaultId}-secretId${i}`,
+      id: `${keyVault.id}-secretId${i}`,
       name: 'secret-' + i,
       url: 'url',
+      keyVault: keyVault,
     });
   }
   return secrets;

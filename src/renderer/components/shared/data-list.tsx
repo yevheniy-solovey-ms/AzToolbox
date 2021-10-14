@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import { TextField, ITextFieldStyles } from '@fluentui/react/lib/TextField';
-import { DetailsList, DetailsListLayoutMode, Selection, IColumn, IDetailsListStyles } from '@fluentui/react/lib/DetailsList';
+import { DetailsList, DetailsListLayoutMode, Selection, IColumn, IDetailsListStyles, IGroup } from '@fluentui/react/lib/DetailsList';
 // import { mergeStyles } from '@fluentui/react/lib/Styling';
 
 // const exampleChildClass = mergeStyles({
@@ -26,6 +26,7 @@ export interface IDataListItem {
 
 export interface IDataListProps {
   data: IDataListItem[];
+  groups?: IGroup[];
   columnName: string;
   onSelect: (selectedIds: string[]) => void;
 }
@@ -93,6 +94,7 @@ export class DataList extends React.Component<IDataListProps, IDataListState> {
         <DetailsList
           styles={gridStyles}
           items={items}
+          groups={this.props.groups}
           columns={this.columns}
           setKey="set"
           layoutMode={DetailsListLayoutMode.justified}
