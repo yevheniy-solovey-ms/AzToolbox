@@ -1,6 +1,7 @@
 import * as React from 'react';
 // import { TextField, ITextFieldStyles } from '@fluentui/react/lib/TextField';
 import { DetailsList, DetailsListLayoutMode, Selection, IColumn, IDetailsListStyles, IGroup } from '@fluentui/react/lib/DetailsList';
+
 // import { mergeStyles } from '@fluentui/react/lib/Styling';
 
 // const exampleChildClass = mergeStyles({
@@ -81,8 +82,8 @@ export class DataList extends React.Component<IDataListProps, IDataListState> {
   //   });
   // };
 
-  private onItemInvoked = (item: IDataListItem): void => {
-    alert(`Item invoked: ${item.name}`);
+  private onItemInvoked = (_: IDataListItem): void => {
+    window.open('https://portal.azure.com/#@actor07ukr.onmicrosoft.com/asset/Microsoft_Azure_KeyVault/Secret/https://contoso-demo-kv.vault.azure.net/secrets/ServiceBusConnectionString-1');
   };
 
   public render(): JSX.Element {
