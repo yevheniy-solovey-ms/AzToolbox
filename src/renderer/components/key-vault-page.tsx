@@ -66,8 +66,6 @@ export default function KeyVaultPage() {
       count: keyVaults.length - startIndex
     });
 
-    console.log('keyg', groups);
-
     return groups;
   }
 
@@ -102,9 +100,6 @@ export default function KeyVaultPage() {
       startIndex: startIndex,
       count: secrets.length - startIndex
     });
-
-    console.log(groups);
-
 
     return groups;
   }

@@ -1,3 +1,5 @@
+import secretsJson from '../../../../../assets/secrets.json';
+
 export interface ISubscribtion {
   id: string;
   name: string;
@@ -18,46 +20,24 @@ export interface ISecret {
   keyVault: IKeyVoult;
 }
 
-const generateSubscribtions = (howMany: number): ISubscribtion[] => {
-  const subscribtions: ISubscribtion[] = [];
-  for (let i = 0; i < howMany; i++) {
-    const subscribtion = {
-      id: `subid-${i}`,
-      name: 'subscribtion-' + i,
-    } as ISubscribtion;
-    subscribtion.keyVaults = generateKeyVaults(20, subscribtion);
-    subscribtions.push(subscribtion);
-  }
-  return subscribtions;
-};
-
-const generateKeyVaults = (howMany: number, subscribtion: ISubscribtion): IKeyVoult[] => {
-  const keyVaults: IKeyVoult[] = [];
-  for (let i = 0; i < howMany; i++) {
-    const keyVault = {
-      id: `${subscribtion.id}-vaultid${i}`,
-      name: subscribtion.name + 'KeyVault-' + i,
-      subscribtion: subscribtion,
-    } as IKeyVoult;
-    keyVault.secrets = generateSecrets(100, keyVault);
-    keyVaults.push(keyVault);
-  }
-  return keyVaults;
-};
-
-const generateSecrets = (howMany: number, keyVault: IKeyVoult): ISecret[] => {
-  const secrets: ISecret[] = [];
-  for (let i = 0; i < howMany; i++) {
-    secrets.push({
-      id: `${keyVault.id}-secretId${i}`,
-      name: 'secret-' + i,
-      url: 'url',
-      keyVault: keyVault,
+const enrichData = (secretsJson: ISubscribtion[]): ISubscribtion[] => {
+  secretsJson.forEach(sub => {
+    sub.keyVaults.forEach(keyVault => {
+      keyVault.subscribtion = sub;
+      keyVault.secrets.forEach(secret => {
+        secret.keyVault = keyVault;
+      });
     });
-  }
-  return secrets;
-};
+  });
+  return secretsJson;
+}
 
-const useData = (): ISubscribtion[] => generateSubscribtions(10);
+const useData = (): ISubscribtion[] => {
+  const data = secretsJson as any;
+  const enricedData = enrichData(data.subscriptions as ISubscribtion[]);
+  console.log(enricedData);
+
+  return enricedData;
+}
 
 export default useData;
